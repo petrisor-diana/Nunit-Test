@@ -127,13 +127,11 @@
     <Compile Include="ExcelDataUtility.cs" />
     <Compile Include="Parallel_StressTests_MainFlows\BaseClass.cs" />
     <Compile Include="Parallel_StressTests_MainFlows\CommonFunctionsUtility_StressTests.cs" />
-    <Compile Include="Parallel_StressTests_MainFlows\ProductOrder_Plissegordijnen.cs" />
     <Compile Include="Parallel_StressTests_MainFlows\ProductOrder_HoutenJaloezieen1.cs" />
     <Compile Include="Parallel_StressTests_MainFlows\ProductOrder_HoutenJaloezieens2.cs" />
     <Compile Include="Parallel_StressTests_MainFlows\ProductOrder_HoutenJaloezieen.cs" />
     <Compile Include="Parallel_StressTests_MainFlows\SampleOrder1.cs" />
     <Compile Include="Parallel_StressTests_MainFlows\SampleOrder2.cs" />
-    <Compile Include="Parallel_StressTests_MainFlows\SampleOrder.cs" />
     <Compile Include="Parallel_StressTests_MainFlows\AdvisorRequest.cs" />
     <Compile Include="Parallel_StressTests_MainFlows\AdvisorRequest_r1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
