@@ -9,11 +9,6 @@ trigger:
 pool:
   vmImage: 'windows-latest'
 
-jobs:
-- job: 'ParallelTesting'
-  strategy:
-    parallel: '2'
-
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
