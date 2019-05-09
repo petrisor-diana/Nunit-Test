@@ -10,16 +10,11 @@ namespace NUnit.Tests_Parallel
     public class CommonFunctionsUtility_StressTests
     {
         public IWebDriver driver;
-        public ExtentReports extent = null;
-        public ExtentTest test = null;
-        public List<string> listOfErrors = new List<string>();
 
-        public CommonFunctionsUtility_StressTests(IWebDriver driver, ExtentReports extent, ExtentTest test, List<string> listOfErrors)
+
+        public CommonFunctionsUtility_StressTests(IWebDriver driver)
         {
             this.driver = driver;
-            this.extent = extent;
-            this.test = test;
-            this.listOfErrors = listOfErrors;
         }
 
         public void GoThroughBasketSteps()
@@ -49,34 +44,7 @@ namespace NUnit.Tests_Parallel
             AddInput("b_city", "city name");
 
             System.Threading.Thread.Sleep(2000);
-
-            ValidateInputForBasket("first_name", "Invalid input data for firstname");
-            ValidateInputForBasket("last_name", "Invalid input data for lastname");
-            ValidateInputForBasket("Postcode", "Invalid input data for postcode number");
-            ValidateInputForBasket("house_nr", "Invalid input data for house number");
-            ValidateInputForBasket("email", "Invalid input data for Email address");
-            ValidateInputForBasket("Telefoonnummer", "Invalid input data for telephone");
-            ValidateInputForBasket("b_firstname", "Invalid input data for delivery - firstname");
-            ValidateInputForBasket("b_lastname", "Invalid input data for delivery - lastname");
-            ValidateInputForBasket("b_postcode", "Invalid input data for delivery - postcode");
-            ValidateInputForBasket("b_housenumber", "Invalid input data for delivery - house number");
-            ValidateInputForBasket("b_street", "Invalid input data for street name");
-            ValidateInputForBasket("b_city", "Invalid input data for city name");
-
-            if (listOfErrors != null && listOfErrors.Count > 0)
-            {
-                test.Log(Status.Info, listOfErrors.Count + " Invalid data entries. Can not reach Thank you page!");
-
-                ITakesScreenshot screenshot = driver as ITakesScreenshot;
-                Screenshot screen = screenshot.GetScreenshot();
-                screen.SaveAsFile("D:\\NUnit Unit Test\\NUnit.Tests1\\NUnit.Tests1\\Screenshot\\AdvisorRequest\\screen7.jpeg", ScreenshotImageFormat.Jpeg);
-                test.Log(Status.Info, "Snapshot below:" + test.AddScreenCaptureFromPath("D:\\NUnit Unit Test\\NUnit.Tests1\\NUnit.Tests1\\Screenshot\\AdvisorRequest\\screen7.jpeg"));
-                listOfErrors.Clear();
-
-                driver.Quit();
-            }
-            else
-            {
+           
                 CheckIfLoaded("cphContent_cphContentMain_ctl00_ctl00_hlPayment");
                 Click("cphContent_cphContentMain_ctl00_ctl00_hlPayment");
 
@@ -93,9 +61,6 @@ namespace NUnit.Tests_Parallel
 
                 CheckIfLoadedXpath("//div[@class='title-thank-you']");
                 driver.FindElement(By.ClassName("title-thank-you"));
-
-                test.Log(Status.Pass, "Success");
-            }
         }
 
         public void GoThroughProductConfigurationSteps()
@@ -155,100 +120,10 @@ namespace NUnit.Tests_Parallel
             selectElement.SelectByValue(dropdownValue);
         }
 
-        public void ValidateInputForBasket(string inputId, string errorMessage)
-        {
-            var inputErrors = driver.FindElements(By.XPath("//input[@id='" + inputId + "']/parent::div[@class='form-group filled validation-error']"));
-
-            if (inputErrors != null && inputErrors.Count > 0)
-            {
-                listOfErrors.Add(errorMessage);
-                test.Log(Status.Info, errorMessage + " for " + inputId);
-            }
-
-            else
-            {
-                test.Log(Status.Info, "Valid input data for " + inputId);
-            }
-        }
-
-        public void ValidateInputForSampleOrder(string inputId, string errorMessage)
-        {
-            var inputErrors = driver.FindElements(By.XPath("//input[@id='" + inputId + "']/preceding-sibling::div[@class='error-msg']"));
-
-            if (inputErrors != null && inputErrors.Count > 0)
-            {
-                test.Log(Status.Info, errorMessage + " for " + inputId);
-                listOfErrors.Add(errorMessage);
-            }
-
-            else
-
-            {
-                test.Log(Status.Info, "Valid input data for " + inputId);
-            }
-        }
-
-        public void ValidateInputForAdvisor(string inputId, string errorMessage)
-        {
-            var inputErrors = driver.FindElements(By.XPath("//input[@id='" + inputId + "']/following-sibling::div[@class='client-error-message']"));
-
-            if (inputErrors != null && inputErrors.Count > 0)
-            {
-                test.Log(Status.Info, errorMessage + " for " + inputId);
-                listOfErrors.Add(errorMessage);
-            }
-            else
-
-            {
-                test.Log(Status.Info, "Valid input data for " + inputId);
-            }
-        }
-
-        //public void CheckPageIsReadyJS()
-        //{
-
-        //    string bodyClassToFind = string.Empty;
-
-        //    //swtich
-        //    //case 1
-        //    // case 2
-
-        //    //....
-
-
-
-
-        //    IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-        //    Boolean pageLoaded = js.ExecuteScript("return document.readyState").ToString().Equals("complete");
-
-        //    //Check ready state of page.
-        //    if (pageLoaded == true)
-        //    {
-        //        System.Diagnostics.Debug.WriteLine("Page Is loaded.");
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        do
-        //        {
-        //            System.Threading.Thread.Sleep(1000);
-
-        //            pageLoaded = js.ExecuteScript("return document.readyState").ToString().Equals("complete");
-        //        }
-        //        while (pageLoaded != true);
-        //    }
-        //}
 
         public void CheckIfLoaded(string elemId)
         {
-            //DefaultWait<IWebDriver> fluentWait = new DefaultWait<IWebDriver>(driver);
-            //fluentWait.Timeout = TimeSpan.FromSeconds(10);
-            //fluentWait.PollingInterval = TimeSpan.FromMilliseconds(500);
-            //fluentWait.IgnoreExceptionTypes(typeof(ElementNotVisibleException), typeof(NoSuchElementException), typeof(StaleElementReferenceException));
-            //IWebElement searchResult = fluentWait.Until(x => x.FindElement(By.Id(elemId)));
 
-            //WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(100));
-            //IWebElement myDynamicElement = wait.Until<IWebElement>(d => d.FindElement(By.Id(elemId)));
 
             WebDriverWait fluentWait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
 

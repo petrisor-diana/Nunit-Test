@@ -25,16 +25,11 @@ namespace NUnit.Tests_Parallel
 
             //launch browser
             OpenBrowser();
-
-            //add data to exceldata file
-          //  ExcelDataUtility.PopulateInCollection(ConfigurationManager.AppSettings["ProjectPath"] + "\\Resources\\CustomerBasketInput1.xlsx", 1);
-
+            
             try
             {
                 //initialize test report
-                test = extent.CreateTest("ProductOrder_HoutenJaloezieen").Info("Test started");
-                test.Log(Status.Info, "Browser is launched");
-                commonFunctionsUtilities = new CommonFunctionsUtility_StressTests(driver, extent, test, listOfErrors);
+                commonFunctionsUtilities = new CommonFunctionsUtility_StressTests(driver);
 
                 //login
                 commonFunctionsUtilities.Login();
@@ -64,8 +59,7 @@ namespace NUnit.Tests_Parallel
             }
             catch (Exception e)
             {
-                test.Log(Status.Info, "Can not reach Thank you page. Check error bellow:");
-                test.Log(Status.Fail, e.ToString());
+             
              
                 throw;
             }

@@ -12,21 +12,9 @@ namespace NUnit.Tests_Parallel
     public class BaseClass
     {
         public IWebDriver driver;
-        public static ExtentReports extent = null;
-        public static ExtentHtmlReporter htmlReport;
-        public ExtentTest test = null;
-        public List<string> listOfErrors = new List<string>();
         public CommonFunctionsUtility_StressTests commonFunctionsUtilities;
 
         [SetUp]
-        public void ReportStart()
-        {
-            //create report 
-            extent = new ExtentReports();
-            htmlReport = new ExtentHtmlReporter(ConfigurationManager.AppSettings["ProjectPath"] + "\\ExtentReport\\MainFlows_Parallel\\reports.html");
-            extent.AttachReporter(htmlReport);
-        }
-
         public void OpenBrowser()
         {
             //launch browser
@@ -43,6 +31,7 @@ namespace NUnit.Tests_Parallel
             driver.Url =  ConfigurationManager.AppSettings["Url"];
         }
 
+        [TearDown]
         public void CloseBrowser()
         {
             if (driver != null)
@@ -51,12 +40,6 @@ namespace NUnit.Tests_Parallel
                 driver.Quit();
             }
         }
-
-        [TearDown]
-        public void ReportClose()
-        {
-            //Clear report
-            extent.Flush();
-        }
+     
     }
 }

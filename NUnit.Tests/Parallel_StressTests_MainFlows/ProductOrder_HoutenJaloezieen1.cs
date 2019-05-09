@@ -15,19 +15,13 @@ namespace NUnit.Tests_Parallel
         [Description("")]
         public void ProductOrder_HoutenJaloezieen()
         {
-            System.Threading.Thread.Sleep(3000);
-            //Assert.Ignore("Not ready for testing");
-            OpenBrowser();
 
-            //add data to exceldata file
-          //  ExcelDataUtility.PopulateInCollection(ConfigurationManager.AppSettings["ProjectPath"] + "\\Resources\\CustomerBasketInput.xlsx", 1);
+            OpenBrowser();
 
             try
             {
                 //initialize test report
-                test = extent.CreateTest("ProductOrder_HoutenJaloezieen").Info("Test started");
-                test.Log(Status.Info, "Browser is launched");
-                commonFunctionsUtilities = new CommonFunctionsUtility_StressTests(driver, extent, test, listOfErrors);
+                commonFunctionsUtilities = new CommonFunctionsUtility_StressTests(driver);
 
                 //login
                 commonFunctionsUtilities.Login();
@@ -42,9 +36,7 @@ namespace NUnit.Tests_Parallel
                 commonFunctionsUtilities.CheckIfLoaded("ProductListerTop53");
 
                 IList<IWebElement> products = driver.FindElements(By.XPath("//ul[@id='ProductListerTop53']/li/ul/li"));
-                //Random randomElem = new Random();
                 System.Threading.Thread.Sleep(2000);
-                //int num = randomElem.Next(0, products.Count);
                 products[0].Click();
 
                 //product configuration
@@ -58,8 +50,7 @@ namespace NUnit.Tests_Parallel
             }
             catch (Exception e)
             {
-                test.Log(Status.Info, "Can not reach Thank you page. Check error bellow:");
-                test.Log(Status.Fail, e.ToString());
+            
                 throw;
             }
             finally

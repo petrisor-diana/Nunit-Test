@@ -14,19 +14,14 @@ namespace NUnit.Tests_Parallel
         [Description("Create an Advisor Request")]
         public void AdvisorRequest_r1()
         {
-            System.Threading.Thread.Sleep(1000);
-            //Assert.Ignore("Not ready for testing");
-            OpenBrowser();
 
-            //add data to exceldata file
-        //    ExcelDataUtility.PopulateInCollection(ConfigurationManager.AppSettings["ProjectPath"] + "\\Resources\\AdvisorRequestInput1.xlsx", 1);
+            OpenBrowser();
 
             try
             {
                 //initialize test report		
-                test = extent.CreateTest("Advisor_Request").Info("Test started");
-                test.Log(Status.Info, "Browser is launched");
-                commonFunctionsUtilities = new CommonFunctionsUtility_StressTests(driver, extent, test, listOfErrors);
+           
+                commonFunctionsUtilities = new CommonFunctionsUtility_StressTests(driver);
 
                 //login
                 commonFunctionsUtilities.Login();
@@ -45,37 +40,19 @@ namespace NUnit.Tests_Parallel
 
                 commonFunctionsUtilities.Click("calL_2-2");
 
-                commonFunctionsUtilities.ValidateInputForAdvisor("cphContent_cphContentMain_ctl00_ctl00_rptSubjectFields_txtVoornaam_0", "Invalid input data for firstname");
-                commonFunctionsUtilities.ValidateInputForAdvisor("cphContent_cphContentMain_ctl00_ctl00_rptSubjectFields_txtAchternaam_1", "Invalid input data for lastname");
-                commonFunctionsUtilities.ValidateInputForAdvisor("cphContent_cphContentMain_ctl00_ctl00_rptSubjectFields_txtTelefoonnummer_2", "Invalid input data for phone number");
-                commonFunctionsUtilities.ValidateInputForAdvisor("cphContent_cphContentMain_ctl00_ctl00_rptSubjectFields_txtPostcode_3", "Invalid input data for postcode number");
-                commonFunctionsUtilities.ValidateInputForAdvisor("cphContent_cphContentMain_ctl00_ctl00_rptSubjectFields_txtHuisnummer_4", "Invalid input data for house number");
-                commonFunctionsUtilities.ValidateInputForAdvisor("cphContent_cphContentMain_ctl00_ctl00_txtEmailAddress", "Invalid email address");
-
-                if (listOfErrors != null && listOfErrors.Count > 0)
-                {
-                    test.Log(Status.Info, listOfErrors.Count + " Invalid data entries. Can not reach Thank you page!");
-                    listOfErrors.Clear();
-
-                    CloseBrowser();
-                }
-                else
-                {
                     System.Threading.Thread.Sleep(1000);
                     commonFunctionsUtilities.Click("cphContent_cphContentMain_ctl00_ctl00_btnSend");
 
                     //go to thank you page
                     IWebElement thankYou = driver.FindElement(By.ClassName("adviesThankYouWrapper"));
-                    test.Log(Status.Info, "Thank you step");
-                    test.Log(Status.Pass, "Success");
+        
                     driver.Quit();
                 }
-            }
+            
 
             catch (Exception e)
             {
-                test.Log(Status.Info, "Can not reach Thank you page. Check error bellow:");
-                test.Log(Status.Fail, e.ToString());
+            
                 throw;
             }
 

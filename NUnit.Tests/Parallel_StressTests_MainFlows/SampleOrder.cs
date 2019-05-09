@@ -15,19 +15,15 @@ namespace NUnit.Tests_Parallel
         [Description("")]
         public void SampleOrder_r1()
         {
-            //Assert.Ignore("Not ready for testing");
+
             //launch browser
             OpenBrowser();
-
-            //add data to exceldata file
-           // ExcelDataUtility.PopulateInCollection(ConfigurationManager.AppSettings["ProjectPath"] + "\\Resources\\SampleOrderInput1.xlsx", 1);
 
             try
             {
                 //initialize test report
-                test = extent.CreateTest("Sample_Order").Info("Test started");
-                test.Log(Status.Info, "Browser is launched");
-                commonFunctionsUtilities = new CommonFunctionsUtility_StressTests(driver, extent, test, listOfErrors);
+
+                commonFunctionsUtilities = new CommonFunctionsUtility_StressTests(driver);
 
                 //login
                 commonFunctionsUtilities.Login();
@@ -55,25 +51,6 @@ namespace NUnit.Tests_Parallel
                 commonFunctionsUtilities.AddInput("fc_streetSC", "street name");
                 commonFunctionsUtilities.AddInput("fc_citySC", "city name");
 
-                commonFunctionsUtilities.ValidateInputForSampleOrder("fc_nameSC", "Invalid input data for firstname");
-                commonFunctionsUtilities.ValidateInputForSampleOrder("fc_lastnameSC", "Invalid input data for lastname");
-                commonFunctionsUtilities.ValidateInputForSampleOrder("fc_emailSC", "Invalid input data for Email address");
-                commonFunctionsUtilities.ValidateInputForSampleOrder("fc_zipSC", "Invalid input data for postcode number");
-                commonFunctionsUtilities.ValidateInputForSampleOrder("fc_housenumberSC", "Invalid input data for house number");
-                commonFunctionsUtilities.ValidateInputForSampleOrder("fc_streetSC", "Invalid input data for street name");
-                commonFunctionsUtilities.ValidateInputForSampleOrder("fc_citySC", "Invalid input data for city name");
-
-                if (listOfErrors != null && listOfErrors.Count > 0)
-                {
-                    test.Log(Status.Info, listOfErrors.Count + " Invalid data entries. Can not reach Thank you page!");
-
-                 
-                    listOfErrors.Clear();
-
-                    CloseBrowser();
-                }
-                else
-                {
                     commonFunctionsUtilities.Click("ctl16_fieldsetDelivery");
 
                     driver.FindElement(By.XPath("//a[@onclick='ValidateFields(true); return false;']")).Click();
@@ -81,18 +58,12 @@ namespace NUnit.Tests_Parallel
                     driver.FindElement(By.XPath("//a[@onclick='ResetHF();' and @id='ctl16_homeLink']")).Click();
                     System.Threading.Thread.Sleep(1000);
 
-                    test.Log(Status.Pass, "Success");
+
                     driver.Quit();
-                }
+                
             }
             catch (Exception e)
             {
-                test.Log(Status.Info, "Can not reach Thank you page. Check error bellow:");
-                test.Log(Status.Fail, e.ToString());
-                ITakesScreenshot screenshot = driver as ITakesScreenshot;
-                Screenshot screen = screenshot.GetScreenshot();
-                screen.SaveAsFile(ConfigurationManager.AppSettings["ProjectPath"] + "\\Screenshot\\Sample Order\\screen4.jpeg", ScreenshotImageFormat.Jpeg);
-                test.Log(Status.Fail, "Snapshot below:" + test.AddScreenCaptureFromPath(ConfigurationManager.AppSettings["ProjectPath"] + "\\Screenshot\\Sample Order\\screen4.jpeg"));
                 throw;
             }
             finally
