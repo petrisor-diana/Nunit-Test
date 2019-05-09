@@ -5,12 +5,7 @@
 
 trigger:
 - master
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    feedsToUse: 'select'
-    versioningScheme: 'off'
-    
+
 pool:
   vmImage: 'windows-latest'
 
