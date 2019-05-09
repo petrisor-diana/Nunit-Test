@@ -14,6 +14,11 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
+jobs:
+- job: ParallelTesting
+  strategy:
+    parallel: 29
+
 steps:
 - task: NuGetToolInstaller@0
 
