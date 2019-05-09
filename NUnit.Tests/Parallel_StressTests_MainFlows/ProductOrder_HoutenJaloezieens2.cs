@@ -66,10 +66,7 @@ namespace NUnit.Tests_Parallel
             {
                 test.Log(Status.Info, "Can not reach Thank you page. Check error bellow:");
                 test.Log(Status.Fail, e.ToString());
-                ITakesScreenshot screenshot = driver as ITakesScreenshot;
-                Screenshot screen = screenshot.GetScreenshot();
-                screen.SaveAsFile(ConfigurationManager.AppSettings["ProjectPath"] + "\\Screenshot\\Sample Order\\screen111.jpeg", ScreenshotImageFormat.Jpeg);
-                test.Log(Status.Fail, "Snapshot below:" + test.AddScreenCaptureFromPath(ConfigurationManager.AppSettings["ProjectPath"] + "\\Screenshot\\Sample Order\\screen111.jpeg"));
+             
                 throw;
             }
             finally

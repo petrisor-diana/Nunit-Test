@@ -25,6 +25,7 @@ namespace NUnit.Tests_DataDriven
         [OneTimeSetUp]
         public void ReportStart()
         {
+            Assert.Ignore("");
             //create report 
             extent = new ExtentReports();
             var htmlReporter = new ExtentHtmlReporter(ConfigurationManager.AppSettings["ProjectPath"] + "\\ExtentReport\\DataDriven_MainFlows\\reports.html");

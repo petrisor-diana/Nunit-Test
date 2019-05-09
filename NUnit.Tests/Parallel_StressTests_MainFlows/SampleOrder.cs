@@ -67,10 +67,7 @@ namespace NUnit.Tests_Parallel
                 {
                     test.Log(Status.Info, listOfErrors.Count + " Invalid data entries. Can not reach Thank you page!");
 
-                    ITakesScreenshot screenshot = driver as ITakesScreenshot;
-                    Screenshot screen = screenshot.GetScreenshot();
-                    screen.SaveAsFile(ConfigurationManager.AppSettings["ProjectPath"] + "\\Screenshot\\AdvisorRequest\\screen4.jpeg", ScreenshotImageFormat.Jpeg);
-                    test.Log(Status.Info, "Snapshot below:" + test.AddScreenCaptureFromPath(ConfigurationManager.AppSettings["ProjectPath"] + "\\Screenshot\\AdvisorRequest\\screen4.jpeg"));
+                 
                     listOfErrors.Clear();
 
                     CloseBrowser();

@@ -56,18 +56,12 @@ namespace NUnit.Tests_Parallel
                 if (listOfErrors != null && listOfErrors.Count > 0)
                 {
                     test.Log(Status.Info, listOfErrors.Count + " Invalid data entries. Can not reach Thank you page!");
-
-                    ITakesScreenshot screenshot = driver as ITakesScreenshot;
-                    Screenshot screen = screenshot.GetScreenshot();
-                    screen.SaveAsFile(ConfigurationManager.AppSettings["ProjectPath"] + "\\Screenshot\\AdvisorRequest\\screen22.jpeg", ScreenshotImageFormat.Jpeg);
-                    test.Log(Status.Info, "Snapshot below:" + test.AddScreenCaptureFromPath(ConfigurationManager.AppSettings["ProjectPath"] + "\\Screenshot\\AdvisorRequest\\screen22.jpeg"));
                     listOfErrors.Clear();
 
                     driver.Quit();
                 }
                 else
                 {
-                    System.Threading.Thread.Sleep(1000);
                     commonFunctionsUtilities.Click("cphContent_cphContentMain_ctl00_ctl00_btnSend");
 
                     //go to thank you page
@@ -82,8 +76,6 @@ namespace NUnit.Tests_Parallel
 
             catch (Exception e)
             {
-                test.Log(Status.Info, "Can not reach Thank you page. Check error bellow:");
-                test.Log(Status.Fail, e.ToString());
                 throw;
             }
 

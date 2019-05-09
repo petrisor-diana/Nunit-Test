@@ -123,24 +123,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Parallel_StressTests_AdvisorFlows\BaseClass.cs" />
-    <Compile Include="Parallel_StressTests_AdvisorFlows\PHOTOSERVICE_ORDER_SAMPLE.cs" />
-    <Compile Include="Parallel_StressTests_AdvisorFlows\PHOTOSERVICE_CALLBACK.cs" />
-    <Compile Include="Parallel_StressTests_AdvisorFlows\PHOTOSERVICE_ADMIN.cs" />
-    <Compile Include="Parallel_StressTests_AdvisorFlows\ADVISEURS_PLANNING_BLANC.cs" />
-    <Compile Include="Parallel_StressTests_AdvisorFlows\ADVISEURS_PLANNING_ANNULEREN.cs" />
-    <Compile Include="Parallel_StressTests_AdvisorFlows\ADVISEURS_PLANNING.cs" />
-    <Compile Include="Parallel_StressTests_AdvisorFlows\MONTAGE_PLANNING._NEWBLANC.cs" />
-    <Compile Include="Parallel_StressTests_AdvisorFlows\Order_Claim_Garantie.cs" />
-    <Compile Include="Parallel_StressTests_AdvisorFlows\Order_Claim_Transport..cs" />
-    <Compile Include="Parallel_StressTests_AdvisorFlows\Order_Claim_Productfout.cs" />
-    <Compile Include="Parallel_StressTests_AdvisorFlows\Order_Claim_Meetverzekering.cs" />
-    <Compile Include="Parallel_StressTests_AdvisorFlows\Order_Activiteit_Aanmaken.cs" />
-    <Compile Include="Parallel_StressTests_AdvisorFlows\MONTAGE_PLANNING.cs" />
-    <Compile Include="Parallel_StressTests_AdvisorFlows\Order_Bevestiging_Versturen.cs" />
-    <Compile Include="Parallel_StressTests_AdvisorFlows\Order_Factuur_Versturen.cs" />
-    <Compile Include="Parallel_StressTests_AdvisorFlows\CommonFunctionsUtility.cs" />
-    <Compile Include="MainTestCases_DataDriven.cs" />
     <Compile Include="CommonFunctionsUtility.cs" />
     <Compile Include="ExcelDataUtility.cs" />
     <Compile Include="Parallel_StressTests_MainFlows\BaseClass.cs" />
