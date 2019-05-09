@@ -31,13 +31,14 @@ namespace NUnit.Tests_Parallel
         {
             //launch browser
 
-            ChromeOptions options = new ChromeOptions();
-            options.AddArguments("no-sandbox");
-            options.AddArguments("disable-extensions");
-            options.PageLoadStrategy = PageLoadStrategy.Normal;
-            options.AddAdditionalCapability("useAutomationExtension", false);
-            driver = new ChromeDriver(ConfigurationManager.AppSettings["ProjectPath"] + "\\bin\\Debug\\", options, TimeSpan.FromSeconds(90));
-            driver.Manage().Window.Maximize();
+            //ChromeOptions options = new ChromeOptions();
+            //options.AddArguments("no-sandbox");
+            //options.AddArguments("disable-extensions");
+            //options.PageLoadStrategy = PageLoadStrategy.Normal;
+            //options.AddAdditionalCapability("useAutomationExtension", false);
+            //    driver = new ChromeDriver(ConfigurationManager.AppSettings["ProjectPath"] + "\\bin\\Debug\\", options, TimeSpan.FromSeconds(90));
+            driver = new ChromeDriver();
+          driver.Manage().Window.Maximize();
 
             driver.Url =  ConfigurationManager.AppSettings["Url"];
         }
